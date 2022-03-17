@@ -7,20 +7,39 @@ export const router = createRouter({
   history: createWebHistory(),
   routes: [
    {
-      path: '/realtime',
+      path: '/real_time',
       component: Test,
       children: [
         // UserHome will be rendered inside User's <router-view>
         // when /users/:username is matched
-        { path: 'a', component: TestEcharts },
+        { path: 'month', component: TestEcharts },
 
         // UserProfile will be rendered inside User's <router-view>
         // when /users/:username/profile is matched
-        { path: 'b', component: BigScreen },
+        { path: 'week', component: BigScreen },
 
         // UserPosts will be rendered inside User's <router-view>
         // when /users/:username/posts is matched
-        { path: 'posts', component: TestEcharts },
+        { path: 'day', component: TestEcharts },
+
+       
+      ],
+      path:'/history_time',
+      component:Test,
+      children: [
+        // UserHome will be rendered inside User's <router-view>
+        // when /users/:username is matched
+        { path: 'month', component: TestEcharts },
+
+        // UserProfile will be rendered inside User's <router-view>
+        // when /users/:username/profile is matched
+        { path: 'week', component: BigScreen },
+
+        // UserPosts will be rendered inside User's <router-view>
+        // when /users/:username/posts is matched
+        { path: 'day', component: TestEcharts },
+
+       
       ],
     }
   ],
