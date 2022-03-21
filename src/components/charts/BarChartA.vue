@@ -1,14 +1,10 @@
 <template>
-  <v-chart class="chart" :option="option" />
-
-  <BarChartA/>
+ <v-chart class="chart" :option="option" />
 </template>
-
 <script>
-import BarChartA from "./charts/BarChartA.vue";
 import { use } from "echarts/core";
 import { CanvasRenderer } from "echarts/renderers";
-import { PieChart } from "echarts/charts";
+import { BarChart } from "echarts/charts";
 import {
   TitleComponent,
   TooltipComponent,
@@ -17,19 +13,28 @@ import {
 import VChart, { THEME_KEY } from "vue-echarts";
 import { ref, defineComponent } from "vue";
 
-use([
-  CanvasRenderer,
-  PieChart,
-  TitleComponent,
-  TooltipComponent,
-  LegendComponent
-]);
+// const option = {
+//   xAxis: {
+//     type: 'category',
+//     data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+//   },
+//   yAxis: {
+//     type: 'value'
+//   },
+//   series: [
+//     {
+//       data: [120, 200, 150, 80, 70, 110, 130],
+//       type: 'bar'
+//     }
+//   ]
+// };
+
+
+
 export default defineComponent({
   name: "HelloWorld",
   components: {
-    VChart,
-    BarChartA
-    // 注意添加component^_^
+    VChart
   },
   provide: {
     [THEME_KEY]: "light"
@@ -37,38 +42,31 @@ export default defineComponent({
   setup () {
     const option = ref({
       legend: {},
-      tooltip: {},
-    dataset: {
-        // 提供一份数据。
-        source: [
-            ['product', '2015',  '2017'],
-            ['Matcha Latte', 43.3, 93.7],
-            ['Milk Tea', 83.1, 55.1],
-            ['Cheese Cocoa', 86.4, 82.5],
-            ['Walnut Brownie', 72.4, 39.1]
-        ]
-    },
+    tooltip: {},
+    title: {
+    text: '客流总量统计',
+    subtext: 'Living Expenses in Shenzhen'
+  },
+    
     // 声明一个 X 轴，类目轴（category）。默认情况下，类目轴对应到 dataset 第一列。
-    xAxis: {type: 'category'},
+    xAxis: {type: 'category',
+    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] },
     // 声明一个 Y 轴，数值轴。
-    yAxis: {},
+    yAxis: {
+      type:'value'
+    },
     // 声明多个 bar 系列，默认情况下，每个系列会自动对应到 dataset 的每一列。
     series: [
-        {type: 'bar'},
-        {type: 'bar'}
+        {
+          data: [120, 200, 150, 80, 70, 110, 130],
+          type: 'bar'}
+  
     ]
     });
 
     return { option };
   }
 });
-method:{
 
-}
+
 </script>
-
-<style scoped>
-.chart {
-  height: 400px;
-}
-</style>
