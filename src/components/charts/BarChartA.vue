@@ -1,5 +1,8 @@
 <template>
+ <p>Has published books:</p>
+<span>{{ publishedBooksMessage }}</span>
  <v-chart class="chart" :option="option" />
+
 </template>
 <script>
 import { use } from "echarts/core";
@@ -31,8 +34,8 @@ import { ref, defineComponent } from "vue";
 
 
 
-export default defineComponent({
-  name: "HelloWorld",
+export default {
+  name: "BarChartA",
   components: {
     VChart
   },
@@ -65,8 +68,27 @@ export default defineComponent({
     });
 
     return { option };
+  },
+   data() {
+    return {
+      author: {
+        name: 'John Doe',
+        books: [
+          'Vue 2 - Advanced Guide',
+          'Vue 3 - Basic Guide',
+          'Vue 4 - The Mystery'
+        ]
+      }
+    }
+  },
+  computed: {
+    // a computed getter
+    publishedBooksMessage() {
+      // `this` points to the component instance
+      return this.author.books.length > 0 ? 'Yes' : 'No'
+    }
   }
-});
+};
 
 
 </script>
