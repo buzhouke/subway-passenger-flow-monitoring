@@ -1,6 +1,6 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import "echarts";
+import * as echarts from 'echarts';
 import "vue-echarts";
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
@@ -10,7 +10,7 @@ import VueAxios from 'vue-axios'
 
 // createApp(App).mount('#app');
 const app = createApp(App)
-
+app.config.globalProperties.echarts = echarts;
 app.use(ElementPlus)
 app.use(router)
 app.use(VueAxios, axios)
