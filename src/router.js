@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import TestEcharts from './components/TestEcharts.vue'
 import Test from './components/views/Test.vue'
 import BigScreen from './components/views/BigScreen.vue'
+import history_month from './components/analysis/HistoryMonthAnalysis.vue'
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -29,7 +30,7 @@ export const router = createRouter({
       children: [
         // UserHome will be rendered inside User's <router-view>
         // when /users/:username is matched
-        { path: 'month', component: TestEcharts },
+        { path: 'month', component: history_month },
 
         // UserProfile will be rendered inside User's <router-view>
         // when /users/:username/profile is matched

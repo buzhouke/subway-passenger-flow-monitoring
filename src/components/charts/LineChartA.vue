@@ -9,6 +9,7 @@ export default {
   name: 'BarChartA',
   props: {
     id: String,
+    title:String,
     dataXRED: Array,
     dataYRED: Array,
     pieColor: String
@@ -35,7 +36,7 @@ export default {
       // 绘制图表
       myChart.setOption({
         backgroundColor: this.pieColor,
-        title: { text: '在Vue中使用echarts' },
+        title: { text: this.title },
         tooltip: {},
         xAxis: {
           data: this.dataXRED
@@ -52,7 +53,7 @@ export default {
         yAxis: {},
         series: [{
           name: '销量',
-          type: 'bar',
+          type: 'line',
           data: this.dataYRED
         }]
       })

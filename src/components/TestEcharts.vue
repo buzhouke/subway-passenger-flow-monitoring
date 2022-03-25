@@ -1,6 +1,14 @@
 <template>
   <v-chart class="chart" :option="option" />
-
+ <div class="block">
+        <!-- <span class="demonstration">Month</span> -->
+        <el-date-picker
+          v-model="monthA"
+          type="month"
+          placeholder="Pick a month"
+          :default-value="new Date(2019, 1, 1)"
+        />
+      </div>
   <BarChartA :id="barId" :dataXRED="dataX" :dataYRED="dataY" pieColor="white" />
   <PieChartA
     :id="pierId"
@@ -41,6 +49,7 @@ export default defineComponent({
     [THEME_KEY]: "light"
   },
   setup () {
+    const monthA = ref('')
     const option = ref({
       legend: {},
       tooltip: {},
@@ -65,7 +74,7 @@ export default defineComponent({
     ]
     });
 
-    return { option };
+    return { option,monthA };
   },
   methods: {
   // 使用方法来修改值，模拟axios请求

@@ -1,6 +1,5 @@
 <template>
   <div class="chart" :id="id">
-    <!-- :style="{width: '300px', height: '300px'}" -->
   </div>
 </template>
 
