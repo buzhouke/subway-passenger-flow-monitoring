@@ -1,20 +1,50 @@
 <template>
-
- <LineChartA :id="lineId" :title="titleA" :dataXRED="dataX" :dataYRED="dataY"  pieColor="white" />
- <div class="block">
-        <span>请选择月份:</span>
-        <el-date-picker
-          v-model="monthA"
-          type="month"
-          placeholder="Pick a month"
-          :default-value="new Date(2019, 1, 1)"
-        />
-      </div>
+  <LineChartA
+    :id="lineId"
+    :title="titleA"
+    :dataXRED="dataX"
+    :dataYRED="dataY"
+    pieColor="white"
+  />
+  <div class="block">
+    <span>请选择月份:</span>
+    <el-date-picker
+      v-model="monthA"
+      type="month"
+      placeholder="Pick a month"
+      :default-value="new Date(2019, 1, 1)"
+    />
+  </div>
   <BarChartA :id="barId" :dataXRED="dataX" :dataYRED="dataY" pieColor="white" />
-  <PieChartA
+  <!-- <PieChartA
     :id="pierId"
     :pieDataList="pieDataList"
-  ></PieChartA>
+  /> -->
+
+  <el-row>
+    <el-col :span="10">
+      <PieChartA :id="pierId" :title ="titleC" :pieDataList="pieDataList"
+    /></el-col>
+      <el-col :span="2">
+      <!-- <PieChartA :id="pierId" :pieDataList="pieDataList" -->
+    </el-col>
+    <el-col :span="12">
+      <h4>Top 3 线路</h4>
+      <el-table :data="tableData" border style="width: 100%">
+        <el-table-column prop="date" label="Date" width="180" />
+        <el-table-column prop="name" label="Name" width="180" />
+        <el-table-column prop="address" label="Address" />
+      </el-table>
+
+      <h4>Top 3 线路</h4>
+      <el-table :data="tableData" border style="width: 100%">
+        <el-table-column prop="date" label="Date" width="180" />
+        <el-table-column prop="name" label="Name" width="180" />
+        <el-table-column prop="address" label="Address" />
+      </el-table>
+    </el-col>
+   
+  </el-row>
 </template>
 <script>
 import BarChartA from "../charts/BarChartA.vue";
@@ -30,10 +60,9 @@ export default defineComponent({
     LineChartA
     // 注意添加component^_^
   },
-  
+
   setup () {
-    const monthA = ref('')
-  
+    const monthA = ref('');
 
     return { monthA };
   },
@@ -49,10 +78,11 @@ export default defineComponent({
       lineId:'testForLine',
       pierId:'colorRed',
       titleA:'每月客流统计',
+      titleC:'每月线路客流统计',
       barId:'testForBarId',
       dataX: ['衬衫', '羊毛', '雪纺', '裤子', '高跟', '袜子'],
       dataY: [5, 20, 36, 10, 10, 20],
-      pieDataList:[ 
+      pieDataList:[
         { value: 40, name: 'rose 1' },
               { value: 38, name: 'rose 2' },
               { value: 32, name: 'rose 3' },
@@ -60,7 +90,26 @@ export default defineComponent({
               { value: 28, name: 'rose 5' },
               { value: 26, name: 'rose 6' },
               { value: 22, name: 'rose 7' },
-              { value: 18, name: 'rose 8' },]
+              { value: 18, name: 'rose 8' }
+              ],
+      tableData : [{
+    date: '2016-05-03',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles'
+  },
+  {
+    date: '2016-05-02',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles'
+  },
+  {
+    date: '2016-05-04',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles'
+  },
+  
+]
+
     }
   }
 });
@@ -68,8 +117,10 @@ method:{
 
 }
 </script>
-/* <style scoped>
+/*
+<style scoped>
 /* .chart {
   height: 400px;
 } */
-</style> */
+</style>
+*/

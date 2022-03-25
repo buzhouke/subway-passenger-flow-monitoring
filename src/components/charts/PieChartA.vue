@@ -8,6 +8,7 @@ export default {
   name: 'PieChartA',
   props: {
     id: String,
+    title:String,
     pieDataList: Array,
     pieColor: String,
   },
@@ -34,6 +35,7 @@ export default {
         legend: {
           top: 'bottom',
         },
+        title: { text: this.title },
         toolbox: {
           show: true,
           feature: {
