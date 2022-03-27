@@ -28,8 +28,13 @@ export default {
   },
   methods: {
     drawLine() {
-   
-      let myChart = this.echarts.init(document.getElementById(this.id));
+      let myChart;
+      // 基于准备好的dom，初始化echarts实例
+      // const curr = getCurrentInstance();
+      if (myChart != null && myChart !== "" && myChart !== undefined) {
+        myChart.dispose();
+      }
+      myChart  =  this.echarts.init(document.getElementById(this.id));
       // 绘制图表
       myChart.setOption({
         legend: {

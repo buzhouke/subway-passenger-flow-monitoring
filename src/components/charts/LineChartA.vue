@@ -1,22 +1,21 @@
 <template>
   <div class="chart" :id="id" >
-  <!-- :style="{width: '300px', height: '300px'}" -->
   </div>
 </template>
 
 <script>
 export default {
-  name: 'BarChartA',
+  name: 'LineChartA',
   props: {
     id: String,
     title:String,
-    dataXRED: Array,
-    dataYRED: Array,
-    pieColor: String
+    dataX: Array,
+    dataY: Array,
+    lineColor: String
   },
   data () {
     return {
-      msg: 'successful for bar chart'
+      msg: 'successful for line chart'
     }
   },
   
@@ -29,17 +28,22 @@ export default {
     this.drawLine()
   },
   methods: {
+
     drawLine () {
+      let myChart;
       // 基于准备好的dom，初始化echarts实例
       // const curr = getCurrentInstance();
-      let myChart =  this.echarts.init(document.getElementById(this.id))
+      if (myChart != null && myChart !== "" && myChart !== undefined) {
+        myChart.dispose();
+      }
+      myChart  =  this.echarts.init(document.getElementById(this.id))
       // 绘制图表
       myChart.setOption({
-        backgroundColor: this.pieColor,
+        backgroundColor: this.lineColor,
         title: { text: this.title },
         tooltip: {},
         xAxis: {
-          data: this.dataXRED
+          data: this.dataX
         },
          toolbox: {
           show: true,
@@ -52,9 +56,9 @@ export default {
         },
         yAxis: {},
         series: [{
-          name: '销量',
+          name: '单条线',
           type: 'line',
-          data: this.dataYRED
+          data: this.dataY
         }]
       })
     }
